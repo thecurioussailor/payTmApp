@@ -13,7 +13,6 @@ const authHeader = req.headers.authorization;
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        console.log(decoded);
         if(decoded.userId){
 
             req.userId = decoded.userId;
