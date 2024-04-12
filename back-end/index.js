@@ -2,6 +2,8 @@
 const express = require('express');
 const cors = require("cors");
 const mainRouter = require("./routes/index");
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 
@@ -10,6 +12,8 @@ app.use(express.json());
 
 app.use("/api/v1", mainRouter);
 
-app.listen(3000, () => {
-    console.log("Hi, I am listening on port 3000 but I know god is not listening to you")
+const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log(`Hi, I am listening on port ${port} but I know god is not listening to you`)
 });
