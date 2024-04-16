@@ -89,19 +89,31 @@ router.post('/signin', async (req, res) =>{
         message: "Error while logging in"
     })
 })
-router.get("/bulk", async (req, res) =>{
+router.get("/bulk",authMiddleware, async (req, res) =>{
     const filter = req.query.filter || "";
+    const currentId = req.userId;
     const users = await User.find({
-        $or:[{
-            firstName: {
-                "$regex": filter
+        $and:[
+            {
+                _id:{
+                    $ne: currentId,
+                },
+            },
+            {
+            $or:[{
+                firstName: {
+                    "$regex": filter
+                }
+            }, {
+                lastName: {
+                    "$regex": filter
+                }
             }
-        }, {
-            lastName: {
-                "$regex": filter
-            }
-        }
-    ]
+        ]
+    }
+        ]
+        
+        
     })
 
     res.json({
