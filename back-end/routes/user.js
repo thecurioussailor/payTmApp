@@ -62,7 +62,7 @@ router.post('/signin', async (req, res) =>{
     const { success } = signinBody.safeParse(req.body);
     if(!success){
         return res.status(411).json({
-            message: "Email already taken or Invalid inputs"
+            message: "Invalid inputs"
         })
     }
 
@@ -111,6 +111,17 @@ router.get("/bulk", async (req, res) =>{
             lastName: user.lastName,
             _id: user._id
         }))
+    })
+})
+
+router.get("/", authMiddleware, async (req,res) => {
+
+    const user = await User.findOne({
+        _id: req.userId
+    })
+
+    res.json({
+        user
     })
 })
 

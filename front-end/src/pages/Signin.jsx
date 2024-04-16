@@ -5,8 +5,10 @@ import { Heading } from "../components/Heading"
 import { InputBox } from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
 import axios from 'axios';
+import { useNavigate } from "react-router-dom"
 export const Signin = () => {
 
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
     return <div className="bg-slate-300 h-screen flex justify-center">
@@ -21,13 +23,17 @@ export const Signin = () => {
           setPassword(e.target.value);
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">
-          <Button onClick={async () => {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signin",{
-                email,
-                password
+          <Button onClick={async (e) => {
+            e.preventDefault();
+            console.log(email,password);
+            const response = await axios.post("https://paytmapp.onrender.com/api/v1/user/signin",{
+                username: email,
+                password: password
             })
             localStorage.setItem("token", response.data.token);
+            navigate("/dashboard");
           }} label={"Sign in"} />
+        
 
         </div>
         <BottomWarning label={"Don't have an account?"} buttonText={"Sign up"} to={"/signup"} />

@@ -4,18 +4,12 @@ import { Balance } from "../components/Balance"
 import { Users } from "../components/Users"
 
 export const Dashboard = () => {
-    const [balance, setBalance] = useState(0);
-    // useEffect(() => {
-    //     axios.get("http://localhost:3000/api/v1/account/balance")
-    //         .then( response =>{
-    //             setBalance(response.data.user);
-    //         })
-    // }, [])
+    
     return(
         <div>
             <AppBar/>
             <div className="m-8">
-                <Balance value={balance}/>
+                <Balance/>
                 <Users/>
             </div>
         </div>
