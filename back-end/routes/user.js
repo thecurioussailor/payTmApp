@@ -91,6 +91,7 @@ router.post('/signin', async (req, res) =>{
 })
 router.get("/bulk",authMiddleware, async (req, res) =>{
     const filter = req.query.filter || "";
+    
     const currentId = req.userId;
     const users = await User.find({
         $and:[
