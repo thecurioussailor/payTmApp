@@ -5,6 +5,7 @@ import { SendMoney } from './pages/SendMoney'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PaymentSucess from './pages/PaymentSucess'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/' element={<Dashboard/>}/>
           <Route path='/send' element={<SendMoney/>}/>
+          <Route path='/paymentsucess' element={<PaymentSucess/>}/>
         </Routes>
       </BrowserRouter>
   
