@@ -94,13 +94,8 @@ router.get("/bulk",authMiddleware, async (req, res) =>{
     
     const currentId = req.userId;
     const users = await User.find({
-        $and:[
-            {
-                _id:{
-                    $ne: currentId,
-                },
-            },
-            {
+        
+            
             $or:[{
                 firstName: {
                     "$regex": filter
@@ -111,8 +106,8 @@ router.get("/bulk",authMiddleware, async (req, res) =>{
                 }
             }
         ]
-    }
-        ]
+    
+        
         
         
     })
